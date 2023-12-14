@@ -38,7 +38,7 @@ let active = false
 mouse.startMouseService()
 let sensitivity = 500
 let nsensitivity = sensitivity * -1
-let step = 20
+let step = 10
 let nstep = step * -1
 basic.forever(function () {
     if (active) {
@@ -53,5 +53,5 @@ basic.forever(function () {
             mouse.movexy(0, nstep)
         }
     }
-    basic.pause(100)
+    basic.pause(50)
 })
