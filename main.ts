@@ -26,6 +26,11 @@ input.onGesture(Gesture.TiltLeft, function () {
 input.onGesture(Gesture.ScreenUp, function () {
     active = true
 })
+mouse.setStatusChangeHandler(function () {
+    basic.showIcon(IconNames.Surprised)
+    basic.pause(250)
+    basic.clearScreen()
+})
 input.onGesture(Gesture.ScreenDown, function () {
     active = false
 })
@@ -53,5 +58,5 @@ let active = false
 let nstep = 0
 let step = 0
 mouse.startMouseService()
-step = 50
+step = 20
 nstep = step * -1
