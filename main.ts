@@ -13,16 +13,6 @@ input.onButtonPressed(Button.A, function () {
         mouse.click()
     }
 })
-input.onGesture(Gesture.LogoUp, function () {
-    if (active) {
-        mouse.movexy(0, nstep)
-    }
-})
-input.onGesture(Gesture.TiltLeft, function () {
-    if (active) {
-        mouse.movexy(nstep, 0)
-    }
-})
 input.onGesture(Gesture.ScreenUp, function () {
     active = true
 })
@@ -44,19 +34,24 @@ input.onButtonPressed(Button.B, function () {
         mouse.rightClick()
     }
 })
-input.onGesture(Gesture.TiltRight, function () {
-    if (active) {
-        mouse.movexy(step, 0)
-    }
-})
-input.onGesture(Gesture.LogoDown, function () {
-    if (active) {
-        mouse.movexy(0, step)
-    }
-})
 let active = false
-let nstep = 0
-let step = 0
 mouse.startMouseService()
-step = 20
-nstep = step * -1
+let sensitivity = 500
+let nsensitivity = sensitivity * -1
+let step = 20
+let nstep = step * -1
+basic.forever(function () {
+    if (active) {
+        if (input.acceleration(Dimension.X) > sensitivity) {
+            mouse.movexy(step, 0)
+        } else if (input.acceleration(Dimension.X) < nsensitivity) {
+            mouse.movexy(nstep, 0)
+        }
+        if (input.acceleration(Dimension.Y) > sensitivity) {
+            mouse.movexy(0, step)
+        } else if (input.acceleration(Dimension.Y) < nsensitivity) {
+            mouse.movexy(0, nstep)
+        }
+    }
+    basic.pause(100)
+})
