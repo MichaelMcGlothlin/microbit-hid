@@ -45,8 +45,9 @@ active = False
 mouse.start_mouse_service()
 sensitivity = 500
 nsensitivity = sensitivity * -1
-step = 20
+step = 10
 nstep = step * -1
+active = False
 
 def on_forever():
     if active:
@@ -58,5 +59,5 @@ def on_forever():
             mouse.movexy(0, step)
         elif input.acceleration(Dimension.Y) < nsensitivity:
             mouse.movexy(0, nstep)
-    basic.pause(100)
+    basic.pause(50)
 basic.forever(on_forever)

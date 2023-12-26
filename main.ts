@@ -40,6 +40,7 @@ let sensitivity = 500
 let nsensitivity = sensitivity * -1
 let step = 10
 let nstep = step * -1
+active = false
 basic.forever(function () {
     if (active) {
         if (input.acceleration(Dimension.X) > sensitivity) {
